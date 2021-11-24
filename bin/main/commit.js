@@ -13,7 +13,7 @@ async function commit() {
     const command = `git config --global core.autocrlf true && git add -A && git commit -am "${msg}"`;
     const { code } = (0, shelljs_1.exec)(command); //?
     if (code === 0) {
-        console.log(`\n\nSuccessfull commit ${answers.name}`);
+        console.log(`\n\nSuccessfull commit :${answers.name}:`);
     }
 }
 commit();

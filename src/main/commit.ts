@@ -14,7 +14,7 @@ async function commit() {
   const { code } = exec(command); //?
 
   if (code === 0) {
-    console.log(`\n\nSuccessfull commit ${answers.name}`);
+    console.log(`\n\nSuccessfull commit :${answers.name}:`);
   }
 }
 commit();
