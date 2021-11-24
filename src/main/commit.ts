@@ -14,6 +14,9 @@ async function commit() {
   const msg = createCommitMsg(answers);
   const command = `git config --global core.autocrlf true && git add -A && git commit -am "${msg}"`;
   const { stderr, stdout, code } = exec(command); //?
-  return console.log(`${stderr}\n${stdout}\nWith code ( ${code} )`);
+
+  if (code === 0) {
+    console.log(`Successfull commit ${answers.name}`);
+  }
 }
 commit();
