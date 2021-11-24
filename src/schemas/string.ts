@@ -15,7 +15,7 @@ export const commitTypeSchema = union([
   literal('test'),
 ]);
 
-export const COMMIT_TYPES = getLiteralValues(commitTypeSchema); //?
+export const COMMIT_TYPES = getLiteralValues(commitTypeSchema);
 
 export const PARAMS = {
   path: {

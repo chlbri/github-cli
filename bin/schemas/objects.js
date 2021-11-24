@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.questionGitPublish = exports.questionsGitComit = void 0;
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const string_1 = require("./string");
 exports.questionsGitComit = {
     typeCommit: {

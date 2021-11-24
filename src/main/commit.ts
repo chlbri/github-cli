@@ -2,12 +2,11 @@
 
 /* eslint-disable @typescript-eslint/no-var-requires */
 import { log } from 'core';
-
 import { __commit } from '../cli/__commit';
 
-function commit() {
-  const answers = __commit();
-  log('answers', answers);
+async function commit() {
+  const answers = await __commit();
+  return log('answers', answers);
 }
 
 commit();

@@ -1,4 +1,4 @@
-import { DistinctQuestion } from 'inquirer';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { COMMIT_TYPES } from './string';
 
 export const questionsGitComit = {

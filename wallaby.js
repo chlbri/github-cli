@@ -4,8 +4,9 @@
 module.exports = function () {
   return {
     autoDetect: true,
-    teardown() {
-      return require('shelljs').exec('pnpm clear:test');
-    },
+    // teardown() {
+    //   require('shelljs').exec('jest --clearCache');
+    // },
+    runMode: 'onsave',
   };
 };

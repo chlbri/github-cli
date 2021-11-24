@@ -1,1 +1,1 @@
-export declare function isCommitted(path?: string): boolean;
+export declare function isCommitted(): boolean;
