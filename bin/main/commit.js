@@ -1,11 +1,19 @@
 #!/usr/bin/env node
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-/* eslint-disable @typescript-eslint/no-var-requires */
-const core_1 = require("core");
+const shelljs_1 = require("shelljs");
 const __commit_1 = require("../cli/__commit");
 async function commit() {
     const answers = await (0, __commit_1.__commit)();
-    return (0, core_1.log)('answers', answers);
+    if (answers._isCommitted) {
+        return console.log("You don't need to commit");
+    }
+    const msg = (0, __commit_1.createCommitMsg)(answers);
+    const command = `git add -A && git commit -am "${msg}"`;
+    const { stderr, code } = (0, shelljs_1.exec)(command);
+    if (stderr) {
+        return console.log(`Error, exit with (code ${code})`);
+    }
+    return console.log(`SUcessfull commit (code ${code})`);
 }
 commit();

@@ -1,6 +1,8 @@
 import arg from 'arg';
+import { NOmit } from 'core';
 import inquirer, { DistinctQuestion } from 'inquirer';
 import { exec } from 'shelljs';
+import { TypeOf } from 'zod';
 import { isCommitted } from '../functions/git';
 import { questionsGitComit } from '../schemas/objects';
 import { commitTypeSchema, PARAMS } from './../schemas/string';
@@ -8,11 +10,9 @@ import { commitTypeSchema, PARAMS } from './../schemas/string';
 export function __produceCommitQuestions() {
   const questions: DistinctQuestion[] = [];
   const args = arg({
-    [PARAMS.path.param]: String,
     [PARAMS.typeCommit.param]: String,
     [PARAMS.title.param]: String,
     [PARAMS.description.param]: String,
-    [PARAMS.path.alias]: PARAMS.path.param,
     [PARAMS.typeCommit.alias]: PARAMS.typeCommit.param,
     [PARAMS.title.alias]: PARAMS.title.param,
     [PARAMS.description.alias]: PARAMS.description.param,
@@ -58,19 +58,43 @@ export function __produceCommitQuestions() {
   return { questions, name, email, _isCommitted, args } as const;
 }
 
+type Answers = {
+  name: string;
+  email: string;
+  typeCommit: TypeOf<typeof commitTypeSchema>;
+  title: string;
+  description: string;
+  _isCommitted: boolean;
+};
+
 export async function __commit() {
   const { questions, name, email, _isCommitted, args } =
     __produceCommitQuestions();
 
   const answers = {
-    ...(await inquirer.prompt<{
-      [key in keyof typeof questionsGitComit]: string;
-    }>(questions)),
+    typeCommit: args['--typeCommit'] ?? args['-tc'],
+    title: args['--title'] ?? args['-t'],
+    description: args['--description'] ?? args['-d'],
+    ...(await inquirer.prompt(questions)),
     name,
     email,
     _isCommitted,
-    args,
-  };
+  } as Answers;
 
   return answers;
 }
+
+type ExecArgs = NOmit<Answers, '_isCommitted'>;
+
+export function createCommitMsg(args: ExecArgs) {
+  const commitmsg = `${args.title}\n( ${args.typeCommit} )\n\n${args.description}\n\n${args.name} : (<${args.email} >)`;
+  return commitmsg;
+}
+
+createCommitMsg({
+  description: 'desc',
+  name: 'chlbri',
+  email: 'bri_lvi@icloud.com',
+  title: 'initial',
+  typeCommit: 'build',
+}); //?

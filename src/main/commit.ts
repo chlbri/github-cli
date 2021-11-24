@@ -2,11 +2,21 @@
 
 /* eslint-disable @typescript-eslint/no-var-requires */
 import { log } from 'core';
-import { __commit } from '../cli/__commit';
+import { exec } from 'shelljs';
+import { createCommitMsg, __commit } from '../cli/__commit';
 
 async function commit() {
   const answers = await __commit();
-  return log('answers', answers);
-}
+  if (answers._isCommitted) {
+    return console.log("You don't need to commit");
+  }
+  const msg = createCommitMsg(answers);
+  const command = `git add -A && git commit -am "${msg}"`;
+  const { stderr, code } = exec(command);
 
+  if (stderr) {
+    return console.log(`Error, exit with (code ${code})`);
+  }
+  return console.log(`SUcessfull commit (code ${code})`);
+}
 commit();
