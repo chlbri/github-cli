@@ -11,7 +11,7 @@ async function commit() {
     return console.log("You don't need to commit");
   }
   const msg = createCommitMsg(answers);
-  const command = `git add -A && git commit -am "${msg}"`;
+  const command = `git config --global core.autocrlf true && git add -A && git commit -am "${msg}"`;
   const { stderr, stdout, code } = exec(command); //?
 
   if (stderr) {
