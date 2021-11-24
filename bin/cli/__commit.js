@@ -53,13 +53,14 @@ function __produceCommitQuestions() {
 exports.__produceCommitQuestions = __produceCommitQuestions;
 async function __commit() {
     const { questions, name, email, _isCommitted, args } = __produceCommitQuestions();
-    const answers = {
-        ...(await inquirer_1.default.prompt(questions)),
+    return inquirer_1.default
+        .prompt(questions)
+        .then(answers => ({
+        ...answers,
         name,
         email,
         _isCommitted,
         args,
-    };
-    return answers;
+    }));
 }
 exports.__commit = __commit;
