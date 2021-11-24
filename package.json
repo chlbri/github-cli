@@ -11,7 +11,7 @@
   },
   "scripts": {
     "tsc": "tsc",
-    "build:-test": "pnpm tsc && pnpm lint",
+    "build:-test": "pnpm pnpm-install && pnpm tsc && pnpm lint",
     "jest:clear": "jest --clearCache",
     "test": "jest",
     "prettier": "prettier --write \"src/**/*.{ts,tsx}\"",
