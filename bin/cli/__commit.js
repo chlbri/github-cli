@@ -10,7 +10,6 @@ const shelljs_1 = require("shelljs");
 const git_1 = require("../functions/git");
 const objects_1 = require("../schemas/objects");
 const string_1 = require("./../schemas/string");
-const os_1 = require("os");
 function __produceCommitQuestions() {
     var _a, _b, _c;
     const questions = [];
@@ -23,7 +22,6 @@ function __produceCommitQuestions() {
         [string_1.PARAMS.description.alias]: string_1.PARAMS.description.param,
     });
     const _isCommitted = (0, git_1.isCommitted)();
-    _isCommitted;
     if (!_isCommitted) {
         // #region Variables
         const typeCommit = (_a = args[string_1.PARAMS.typeCommit.param]) !== null && _a !== void 0 ? _a : args[string_1.PARAMS.typeCommit.alias];
@@ -66,14 +64,8 @@ async function __commit() {
 }
 exports.__commit = __commit;
 function createCommitMsg(args) {
-    const commitmsg = `${args.title}${os_1.EOL}( ${args.typeCommit} )${os_1.EOL}${args.description}${os_1.EOL}${args.name} : (<${args.email} >)`;
+    const _description = args.description.trim() !== '' ? `\n\n${args.description}\n\n` : '';
+    const commitmsg = `${args.title}\n( ${args.typeCommit} )${_description}${args.name} : (<${args.email} >)`;
     return commitmsg;
 }
 exports.createCommitMsg = createCommitMsg;
-createCommitMsg({
-    description: 'desc',
-    name: 'chlbri',
-    email: 'bri_lvi@icloud.com',
-    title: 'initial',
-    typeCommit: 'build',
-}); //?

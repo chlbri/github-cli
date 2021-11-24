@@ -11,6 +11,7 @@ export declare const questionsGitComit: {
         readonly type: "input";
         readonly name: "title";
         readonly message: "Le titre du commit ?";
+        readonly default: "commit";
     };
     readonly description: {
         readonly type: "input";

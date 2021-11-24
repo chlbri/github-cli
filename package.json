@@ -7,7 +7,9 @@
   "private": true,
   "bin": {
     "@github-cli/commit": "./bin/main/commit.js",
-    "commit": "./bin/main/commit.js"
+    "commit": "./bin/main/commit.js",
+    "@github-cli/publish": "./bin/main/publish.js",
+    "publish": "./bin/main/publish.js"
   },
   "scripts": {
     "tsc": "tsc",

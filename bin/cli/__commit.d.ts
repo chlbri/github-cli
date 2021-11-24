@@ -1,10 +1,9 @@
 import arg from 'arg';
-import { NOmit } from 'core';
+import type { DistinctQuestion } from 'inquirer';
 import inquirer from 'inquirer';
-import { TypeOf } from 'zod';
-import { commitTypeSchema } from './../schemas/string';
+import type { CommitAnswers, CommitOptions } from '../types';
 export declare function __produceCommitQuestions(): {
-    readonly questions: inquirer.DistinctQuestion<inquirer.Answers>[];
+    readonly questions: DistinctQuestion<inquirer.Answers>[];
     readonly name: string;
     readonly email: string;
     readonly _isCommitted: boolean;
@@ -17,15 +16,5 @@ export declare function __produceCommitQuestions(): {
         "-d": "--description";
     }>;
 };
-declare type Answers = {
-    name: string;
-    email: string;
-    typeCommit: TypeOf<typeof commitTypeSchema>;
-    title: string;
-    description: string;
-    _isCommitted: boolean;
-};
-export declare function __commit(): Promise<Answers>;
-declare type ExecArgs = NOmit<Answers, '_isCommitted'>;
-export declare function createCommitMsg(args: ExecArgs): string;
-export {};
+export declare function __commit(): Promise<CommitAnswers>;
+export declare function createCommitMsg(args: CommitOptions): string;

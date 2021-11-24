@@ -1,6 +1,8 @@
 import arg from 'arg';
 import inquirer from 'inquirer';
+import { exec } from 'shelljs';
 import { PARAMS } from '../schemas/string';
+import type { PublishAnswers, PublishOptions } from '../types';
 import {
   questionGitPublish,
   questionsGitComit,
@@ -52,7 +54,7 @@ export async function __publish() {
     name,
     email,
     _isCommitted,
-  };
+  } as PublishAnswers;
 
   return answers;
 }

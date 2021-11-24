@@ -12,7 +12,12 @@ exports.questionsGitComit = {
         pageSize: 4,
         loop: false,
     },
-    title: { type: 'input', name: 'title', message: 'Le titre du commit ?' },
+    title: {
+        type: 'input',
+        name: 'title',
+        message: 'Le titre du commit ?',
+        default: 'commit',
+    },
     description: {
         type: 'input',
         name: 'description',

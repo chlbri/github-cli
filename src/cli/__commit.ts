@@ -1,12 +1,11 @@
 import arg from 'arg';
-import { NOmit } from 'core';
-import inquirer, { DistinctQuestion } from 'inquirer';
+import type { DistinctQuestion } from 'inquirer';
+import inquirer from 'inquirer';
 import { exec } from 'shelljs';
-import { TypeOf } from 'zod';
 import { isCommitted } from '../functions/git';
 import { questionsGitComit } from '../schemas/objects';
+import type { CommitAnswers, CommitOptions } from '../types';
 import { commitTypeSchema, PARAMS } from './../schemas/string';
-import { EOL } from 'os';
 
 export function __produceCommitQuestions() {
   const questions: DistinctQuestion[] = [];
@@ -20,8 +19,6 @@ export function __produceCommitQuestions() {
   });
 
   const _isCommitted = isCommitted();
-
-  _isCommitted;
 
   if (!_isCommitted) {
     // #region Variables
@@ -59,15 +56,6 @@ export function __produceCommitQuestions() {
   return { questions, name, email, _isCommitted, args } as const;
 }
 
-type Answers = {
-  name: string;
-  email: string;
-  typeCommit: TypeOf<typeof commitTypeSchema>;
-  title: string;
-  description: string;
-  _isCommitted: boolean;
-};
-
 export async function __commit() {
   const { questions, name, email, _isCommitted, args } =
     __produceCommitQuestions();
@@ -80,22 +68,15 @@ export async function __commit() {
     name,
     email,
     _isCommitted,
-  } as Answers;
+  } as CommitAnswers;
 
   return answers;
 }
 
-type ExecArgs = NOmit<Answers, '_isCommitted'>;
+export function createCommitMsg(args: CommitOptions) {
+  const _description =
+    args.description.trim() !== '' ? `\n\n${args.description}\n\n` : '';
 
-export function createCommitMsg(args: ExecArgs) {
-  const commitmsg = `${args.title}${EOL}( ${args.typeCommit} )${EOL}${args.description}${EOL}${args.name} : (<${args.email} >)`;
+  const commitmsg = `${args.title}\n( ${args.typeCommit} )${_description}${args.name} : (<${args.email} >)`;
   return commitmsg;
 }
-
-createCommitMsg({
-  description: 'desc',
-  name: 'chlbri',
-  email: 'bri_lvi@icloud.com',
-  title: 'initial',
-  typeCommit: 'build',
-}); //?
