@@ -62,15 +62,15 @@ export async function __commit() {
   const { questions, name, email, _isCommitted, args } =
     __produceCommitQuestions();
 
-  return inquirer
-    .prompt<{
+  const answers = {
+    ...(await inquirer.prompt<{
       [key in keyof typeof questionsGitComit]: string;
-    }>(questions)
-    .then(answers => ({
-      ...answers,
-      name,
-      email,
-      _isCommitted,
-      args,
-    }));
+    }>(questions)),
+    name,
+    email,
+    _isCommitted,
+    args,
+  };
+
+  return answers;
 }

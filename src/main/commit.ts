@@ -5,7 +5,8 @@ import { log } from 'core';
 import { __commit } from '../cli/__commit';
 
 async function commit() {
-  await __commit().then(answers => log('answers', answers));
+  const answers = await __commit();
+  return log('answers', answers);
 }
 
 commit();
