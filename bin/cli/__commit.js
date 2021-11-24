@@ -10,6 +10,7 @@ const shelljs_1 = require("shelljs");
 const git_1 = require("../functions/git");
 const objects_1 = require("../schemas/objects");
 const string_1 = require("./../schemas/string");
+const os_1 = require("os");
 function __produceCommitQuestions() {
     var _a, _b, _c;
     const questions = [];
@@ -65,7 +66,7 @@ async function __commit() {
 }
 exports.__commit = __commit;
 function createCommitMsg(args) {
-    const commitmsg = `${args.title}\n( ${args.typeCommit} )\n\n${args.description}\n\n${args.name} : (<${args.email} >)`;
+    const commitmsg = `${args.title}${os_1.EOL}( ${args.typeCommit} )${os_1.EOL}${os_1.EOL}${args.description}${os_1.EOL}${os_1.EOL}${args.name} : (<${args.email} >)`;
     return commitmsg;
 }
 exports.createCommitMsg = createCommitMsg;

@@ -6,6 +6,7 @@ import { TypeOf } from 'zod';
 import { isCommitted } from '../functions/git';
 import { questionsGitComit } from '../schemas/objects';
 import { commitTypeSchema, PARAMS } from './../schemas/string';
+import { EOL } from 'os';
 
 export function __produceCommitQuestions() {
   const questions: DistinctQuestion[] = [];
@@ -87,7 +88,7 @@ export async function __commit() {
 type ExecArgs = NOmit<Answers, '_isCommitted'>;
 
 export function createCommitMsg(args: ExecArgs) {
-  const commitmsg = `${args.title}\n( ${args.typeCommit} )\n\n${args.description}\n\n${args.name} : (<${args.email} >)`;
+  const commitmsg = `${args.title}${EOL}( ${args.typeCommit} )${EOL}${EOL}${args.description}${EOL}${EOL}${args.name} : (<${args.email} >)`;
   return commitmsg;
 }
 
