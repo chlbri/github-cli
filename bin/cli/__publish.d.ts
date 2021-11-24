@@ -5,5 +5,10 @@ export declare function __producePublishQuestions(): {
     readonly name: string;
     readonly email: string;
     readonly _isCommitted: boolean;
+    readonly description: string | undefined;
+    readonly title: string | undefined;
+    readonly typeCommit: string | undefined;
+    readonly dev: string | undefined;
+    readonly prod: string | undefined;
 };
 export declare function __publish(): Promise<PublishAnswers>;

@@ -20,14 +20,14 @@ export function __produceCommitQuestions() {
 
   const _isCommitted = isCommitted();
 
+  const typeCommit =
+    args[PARAMS.typeCommit.param] ?? args[PARAMS.typeCommit.alias];
+  const title = args[PARAMS.title.param] ?? args[PARAMS.title.alias];
+  const description =
+    args[PARAMS.description.param] ?? args[PARAMS.description.alias];
+
   if (!_isCommitted) {
     // #region Variables
-
-    const typeCommit =
-      args[PARAMS.typeCommit.param] ?? args[PARAMS.typeCommit.alias];
-    const title = args[PARAMS.title.param] ?? args[PARAMS.title.alias];
-    const description =
-      args[PARAMS.description.param] ?? args[PARAMS.description.alias];
 
     // #endregion
 
@@ -53,17 +53,32 @@ export function __produceCommitQuestions() {
     silent: true,
   }).stdout.trim();
 
-  return { questions, name, email, _isCommitted, args } as const;
+  return {
+    questions,
+    name,
+    email,
+    _isCommitted,
+    title,
+    typeCommit,
+    description,
+  } as const;
 }
 
 export async function __commit() {
-  const { questions, name, email, _isCommitted, args } =
-    __produceCommitQuestions();
+  const {
+    questions,
+    name,
+    email,
+    _isCommitted,
+    title,
+    typeCommit,
+    description,
+  } = __produceCommitQuestions();
 
   const answers = {
-    typeCommit: args['--typeCommit'] ?? args['-tc'],
-    title: args['--title'] ?? args['-t'],
-    description: args['--description'] ?? args['-d'],
+    typeCommit,
+    title,
+    description,
     ...(await inquirer.prompt(questions)),
     name,
     email,
@@ -79,4 +94,10 @@ export function createCommitMsg(args: CommitOptions) {
 
   const commitmsg = `${args.title}\n( ${args.typeCommit} )${_description}${args.name} : (<${args.email} >)`;
   return commitmsg;
+}
+
+export function _commit(answers: CommitAnswers) {
+  const msg = createCommitMsg(answers);
+  const command = `tsc && pnpm lint && git add -A && git commit -am "${msg}"`;
+  return exec(command); //?
 }
