@@ -12,7 +12,7 @@ async function commit() {
   }
   const msg = createCommitMsg(answers);
   const command = `git add -A && git commit -am "${msg}"`;
-  const { stderr, code } = exec(command);
+  const { stderr, stdout, code } = exec(command); //?
 
   if (stderr) {
     return console.log(`Error, exit with (code ${code})`);

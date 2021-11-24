@@ -88,7 +88,7 @@ export async function __commit() {
 type ExecArgs = NOmit<Answers, '_isCommitted'>;
 
 export function createCommitMsg(args: ExecArgs) {
-  const commitmsg = `${args.title}${EOL}( ${args.typeCommit} )${EOL}${EOL}${args.description}${EOL}${EOL}${args.name} : (<${args.email} >)`;
+  const commitmsg = `${args.title}${EOL}( ${args.typeCommit} )${EOL}${args.description}${EOL}${args.name} : (<${args.email} >)`;
   return commitmsg;
 }
 

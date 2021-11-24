@@ -66,7 +66,7 @@ async function __commit() {
 }
 exports.__commit = __commit;
 function createCommitMsg(args) {
-    const commitmsg = `${args.title}${os_1.EOL}( ${args.typeCommit} )${os_1.EOL}${os_1.EOL}${args.description}${os_1.EOL}${os_1.EOL}${args.name} : (<${args.email} >)`;
+    const commitmsg = `${args.title}${os_1.EOL}( ${args.typeCommit} )${os_1.EOL}${args.description}${os_1.EOL}${args.name} : (<${args.email} >)`;
     return commitmsg;
 }
 exports.createCommitMsg = createCommitMsg;
