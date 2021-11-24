@@ -5,7 +5,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const core_1 = require("core");
 const __commit_1 = require("../cli/__commit");
 async function commit() {
-    const answers = await (0, __commit_1.__commit)();
-    (0, core_1.log)('answers', answers);
+    return (0, __commit_1.__commit)().then(answers => {
+        (0, core_1.log)('answers', answers);
+    });
 }
 commit();
