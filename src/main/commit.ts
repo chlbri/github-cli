@@ -8,4 +8,4 @@ async function commit() {
   await __commit().then(answers => log('answers', answers));
 }
 
-__commit()
+commit();
