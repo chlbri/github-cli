@@ -16,3 +16,29 @@ export const commitTypeSchema = union([
 ]);
 
 export const COMMIT_TYPES = getLiteralValues(commitTypeSchema); //?
+
+export const PARAMS = {
+  path: {
+    param: '--path',
+    alias: '-p',
+  },
+  typeCommit: {
+    param: '--typeCommit',
+    alias: '-tc',
+  },
+  title: {
+    param: '--title',
+    alias: '-t',
+  },
+  description: {
+    param: '--description',
+    alias: '-d',
+  },
+  dev: {
+    param: '--dev',
+  },
+  prod: {
+    param: '--prod',
+    alias: '-p',
+  },
+} as const;

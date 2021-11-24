@@ -1,17 +1,20 @@
 import { CLI_KEYS, ttestCLI } from 'core-test';
 import { resolve } from 'path';
 import { exec } from 'shelljs';
-import { __commit } from '../src/cli/commit';
+import { __commit } from '../src/cli/__commit';
 
 const TEST_DIR = '.__temp';
 
 const path = resolve(process.cwd(), TEST_DIR); //?
 
+const iniGit = () => exec(`cd ${path} && git init `);
+const unstage = () => exec(`cd ${path} && echo '' > test.txt`);
+
 describe('Temp', () => {
   beforeAll(() => {
     exec(`rimraf -rf ${TEST_DIR}`);
     exec(`mkdir ${TEST_DIR}`);
-    exec(`cd ${path} && git init `);
+    ini
     exec(`cd ${path} && echo '' > test.txt`);
   });
   afterAll(() => {

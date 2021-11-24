@@ -6,8 +6,8 @@
   "license": "MIT",
   "private": true,
   "bin": {
-    "@github-cli/commit": "bin/cli/commit.js",
-    "commit": "bin/cli/commit.js"
+    "@github-cli/commit": "bin/main/commit.js",
+    "commit": "bin/main/commit.js"
   },
   "scripts": {
     "tsc": "tsc",

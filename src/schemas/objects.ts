@@ -1,8 +1,8 @@
 import { DistinctQuestion } from 'inquirer';
 import { COMMIT_TYPES } from './string';
 
-export const questionsGitComit: DistinctQuestion[] = [
-  {
+export const questionsGitComit = {
+  typeCommit: {
     type: 'list',
     choices: COMMIT_TYPES,
     name: 'typeCommit',
@@ -10,25 +10,25 @@ export const questionsGitComit: DistinctQuestion[] = [
     pageSize: 4,
     loop: false,
   },
-  { type: 'input', name: 'title', message: 'Le titre du commit ?' },
-  {
+  title: { type: 'input', name: 'title', message: 'Le titre du commit ?' },
+  description: {
     type: 'input',
     name: 'description',
     message: 'Une petite description ?',
   },
-];
+} as const;
 
-export const questionGitPublish: DistinctQuestion[] = [
-  {
+export const questionGitPublish = {
+  dev: {
     type: 'input',
     default: 'dev',
     message: 'The current branch ?',
     name: 'dev',
   },
-  {
+  prod: {
     type: 'input',
     default: 'main',
     message: 'The prod/publish branch ?',
     name: 'prod',
   },
-];
+} as const;

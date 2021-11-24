@@ -2,8 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.questionGitPublish = exports.questionsGitComit = void 0;
 const string_1 = require("./string");
-exports.questionsGitComit = [
-    {
+exports.questionsGitComit = {
+    typeCommit: {
         type: 'list',
         choices: string_1.COMMIT_TYPES,
         name: 'typeCommit',
@@ -11,24 +11,24 @@ exports.questionsGitComit = [
         pageSize: 4,
         loop: false,
     },
-    { type: 'input', name: 'title', message: 'Le titre du commit ?' },
-    {
+    title: { type: 'input', name: 'title', message: 'Le titre du commit ?' },
+    description: {
         type: 'input',
         name: 'description',
         message: 'Une petite description ?',
     },
-];
-exports.questionGitPublish = [
-    {
+};
+exports.questionGitPublish = {
+    dev: {
         type: 'input',
         default: 'dev',
         message: 'The current branch ?',
         name: 'dev',
     },
-    {
+    prod: {
         type: 'input',
         default: 'main',
         message: 'The prod/publish branch ?',
         name: 'prod',
     },
-];
+};
