@@ -10,7 +10,7 @@ export function __producePublishQuestions() {
   // #region Config
 
   const {
-    questions: _questions,
+    questions,
     name,
     email,
     _isCommitted,
@@ -35,21 +35,21 @@ export function __producePublishQuestions() {
   // #endregion
 
   if (!dev) {
-    _questions.push(questionGitPublish.dev);
+    questions.push(questionGitPublish.dev);
   }
 
   if (!prod) {
-    _questions.push(questionGitPublish.prod);
+    questions.push(questionGitPublish.prod);
   }
 
-  const questions = produce(_questions, draft => {
-    if (!_isCommitted) {
-      const index = draft.findIndex(data => data.name == 'typeCommit');
-      draft[
-        index
-      ].message = `<You need to commit 😒!\n\n> ${draft[index].message}`;
-    }
-  });
+  // const questions = produce(_questions, draft => {
+  //   if (!_isCommitted) {
+  //     const index = draft.findIndex(data => data.name == 'typeCommit');
+  //     draft[
+  //       index
+  //     ].message = `<You need to commit 😒!\n\n> ${draft[index].message}`;
+  //   }
+  // });
 
   return {
     questions,
@@ -77,7 +77,7 @@ export async function __publish() {
     description,
   } = __producePublishQuestions();
 
-  if (_isCommitted) {
+  if (!_isCommitted) {
     console.log('You need to commit 😒!\n');
   }
 

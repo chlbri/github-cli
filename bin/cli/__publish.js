@@ -5,7 +5,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.__publish = exports.__producePublishQuestions = void 0;
 const arg_1 = __importDefault(require("arg"));
-const immer_1 = require("immer");
 const inquirer_1 = __importDefault(require("inquirer"));
 const string_1 = require("../schemas/string");
 const objects_1 = require("./../schemas/objects");
@@ -13,7 +12,7 @@ const __commit_1 = require("./__commit");
 function __producePublishQuestions() {
     // #region Config
     var _a;
-    const { questions: _questions, name, email, _isCommitted, description, title, typeCommit, } = (0, __commit_1.__produceCommitQuestions)();
+    const { questions, name, email, _isCommitted, description, title, typeCommit, } = (0, __commit_1.__produceCommitQuestions)();
     const args = (0, arg_1.default)({
         [string_1.PARAMS.dev.param]: String,
         [string_1.PARAMS.prod.param]: String,
@@ -25,17 +24,19 @@ function __producePublishQuestions() {
     // #endregion
     // #endregion
     if (!dev) {
-        _questions.push(objects_1.questionGitPublish.dev);
+        questions.push(objects_1.questionGitPublish.dev);
     }
     if (!prod) {
-        _questions.push(objects_1.questionGitPublish.prod);
+        questions.push(objects_1.questionGitPublish.prod);
     }
-    const questions = (0, immer_1.produce)(_questions, draft => {
-        if (!_isCommitted) {
-            const index = draft.findIndex(data => data.name == 'typeCommit');
-            draft[index].message = `<You need to commit 😒!\n\n> ${draft[index].message}`;
-        }
-    });
+    // const questions = produce(_questions, draft => {
+    //   if (!_isCommitted) {
+    //     const index = draft.findIndex(data => data.name == 'typeCommit');
+    //     draft[
+    //       index
+    //     ].message = `<You need to commit 😒!\n\n> ${draft[index].message}`;
+    //   }
+    // });
     return {
         questions,
         name,
@@ -51,7 +52,7 @@ function __producePublishQuestions() {
 exports.__producePublishQuestions = __producePublishQuestions;
 async function __publish() {
     const { questions, name, email, _isCommitted, dev, prod, title, typeCommit, description, } = __producePublishQuestions();
-    if (_isCommitted) {
+    if (!_isCommitted) {
         console.log('You need to commit 😒!\n');
     }
     const answers = {
