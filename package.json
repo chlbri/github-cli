@@ -27,7 +27,8 @@
     "upgrade-internal": "pnpm upgrade core core-test",
     "git-push": "git push --follow-tags",
     "git-publish": "pnpm build:-test && pnpm git-push && git checkout main && git merge dev && pnpm git-push && git checkout dev",
-    "link:global": "pnpm link --global"
+    "link:global": "pnpm link --global",
+    "publish": "publish"
   },
   "devDependencies": {
     "@types/concat-stream": "^1.6.1",

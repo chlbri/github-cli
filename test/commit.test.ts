@@ -1,7 +1,7 @@
-import { CLI_KEYS, ttestCLI } from 'core-test';
+import { CLI_KEYS, ttest, ttestCLI } from 'core-test';
 import { resolve } from 'path';
 import { exec } from 'shelljs';
-import { __commit } from '../src/cli/__commit';
+import { createCommitMsg, __commit } from '../src/cli/__commit';
 import { iniGit, unstage, _cwd } from './testHelper';
 
 const TEST_DIR = '.__temp1';
@@ -119,5 +119,33 @@ describe('staged', () => {
         _isCommitted: true,
       },
     },
+  });
+});
+
+describe('msg', () => {
+  ttest({
+    func: createCommitMsg,
+    tests: [
+      {
+        args: {
+          typeCommit: 'docs',
+          email: 'duumy@email.example',
+          name: 'robot',
+          title: 'Commit not important',
+          description: 'Custom description',
+        },
+        expected: `Commit not important\n( docs )\n\nCustom description\n\nrobot : (< duumy@email.example >)`,
+      },
+      {
+        args: {
+          typeCommit: 'build',
+          email: 'duumy@email.example',
+          name: 'robot',
+          title: 'Commit important',
+          description: 'For Database',
+        },
+        expected: `Commit important\n( build )\n\nFor Database\n\nrobot : (< duumy@email.example >)`,
+      },
+    ],
   });
 });
