@@ -22,8 +22,6 @@ afterAll(() => {
   // process.cwd = _cwd;
 });
 
-
-
 beforeAll(() => {
   exec(`rimraf -rf ${path}`);
   exec(`mkdir ${path}`);
@@ -63,7 +61,7 @@ ttestCLI({
   test: {
     expected: {
       typeCommit: 'chore',
-      title: '',
+      title: 'commit',
       name: 'chlbri',
       email: 'bri_lvi@icloud.com',
       _isCommitted: false,

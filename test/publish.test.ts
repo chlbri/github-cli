@@ -65,7 +65,7 @@ ttestCLI({
   test: {
     expected: {
       typeCommit: 'build',
-      title: '',
+      title: 'commit',
       dev: 'dev',
       prod: 'main',
       name: 'chlbri',

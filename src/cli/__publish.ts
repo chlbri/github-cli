@@ -1,14 +1,10 @@
 import arg from 'arg';
-import inquirer from 'inquirer';
-import { exec } from 'shelljs';
-import { PARAMS } from '../schemas/string';
-import type { PublishAnswers, PublishOptions } from '../types';
-import {
-  questionGitPublish,
-  questionsGitComit,
-} from './../schemas/objects';
-import { __produceCommitQuestions } from './__commit';
 import { produce } from 'immer';
+import inquirer from 'inquirer';
+import { PARAMS } from '../schemas/string';
+import type { PublishAnswers } from '../types';
+import { questionGitPublish } from './../schemas/objects';
+import { __produceCommitQuestions } from './__commit';
 
 export function __producePublishQuestions() {
   // #region Config

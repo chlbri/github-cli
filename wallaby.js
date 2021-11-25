@@ -8,5 +8,6 @@ module.exports = function () {
       require('shelljs').exec('jest --clearCache');
     },
     runMode: 'onsave',
+    trace: true,
   };
 };

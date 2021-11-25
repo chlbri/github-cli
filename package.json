@@ -1,6 +1,6 @@
 {
   "name": "@core/github-cli",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "https://github.com/chlbri/github-cli.git",
   "author": "chlbri <bri_lvi@icloud.com>",
   "license": "MIT",
@@ -24,7 +24,7 @@
     "rinit:test": "rimraf ./.__temp2 ./.__temp1",
     "pnpm-install": "pnpm install",
     "upgrade": "pnpm upgrade",
-    "upgrade-internal": "pnpm upgrade core core-promises",
+    "upgrade-internal": "pnpm upgrade core core-test",
     "git-push": "git push --follow-tags",
     "git-publish": "pnpm build:-test && pnpm git-push && git checkout main && git merge dev && pnpm git-push && git checkout dev",
     "link:global": "pnpm link --global"
