@@ -1,5 +1,5 @@
 {
-  "name": "@core/github-cli",
+  "name": "@core_chlbri/github-cli",
   "version": "0.0.4",
   "description": "https://github.com/chlbri/github-cli.git",
   "author": "chlbri <bri_lvi@icloud.com>",
@@ -16,19 +16,19 @@
     "build": "pnpm test && pnpm build:-test",
     "build:-test": "pnpm tsc && pnpm lint",
     "clear:test": "jest --clearCache",
-    "test": "jest",
+    "test": "jest --passWithNoTests",
     "prettier": "prettier --write \"src/**/*.{ts,tsx}\"",
     "eslint": "eslint \"{src/**/*,App}.{ts,tsx,yml,json}\"",
     "lint": "pnpm prettier && pnpm eslint -- --fix",
     "rm": "rimraf -rf node_modules pnpm-lock.yaml",
-    "rinit": "pnpm rm && pnpm pnpm",
+    "rinit": "pnpm rm && pnpm pnpm:install",
     "npm:publish": "pnpm run rinit && publish && pnpm publish",
-    "pnpm": "pnpm install",
+    "pnpm:install": "pnpm install",
     "upgrade": "pnpm upgrade",
     "upgrade-internal": "pnpm upgrade core core-promises",
     "git-push": "git push --follow-tags",
     "git-build-push": "pnpm pnpm && pnpm build && pnpm git-push",
-    "git-publish": "publish"
+    "git-publish": "node ./bin/main/publish.js"
   },
   "devDependencies": {
     "@types/concat-stream": "^1.6.1",
@@ -40,7 +40,6 @@
     "@types/shelljs": "^0.8.9",
     "@typescript-eslint/eslint-plugin": "^5.4.0",
     "@typescript-eslint/parser": "^5.4.0",
-    "core-test": "github:chlbri/core-test",
     "dayjs": "^1.10.7",
     "edit-json-file": "^1.6.2",
     "eslint": "^8.3.0",
@@ -51,6 +50,7 @@
     "jest-extended": "^1.1.0",
     "object.omit": "^3.0.0",
     "prettier": "^2.4.1",
+    "rimraf": "^3.0.2",
     "ts-jest": "^27.0.7",
     "typescript": "^4.5.2"
   },
@@ -58,9 +58,9 @@
     "access": "public"
   },
   "dependencies": {
+    "@core_chlbri/core": "^0.1.1-dc",
     "arg": "^5.0.1",
     "concat-stream": "^2.0.0",
-    "core": "github:chlbri/core#v0.0.22",
     "cross-spawn": "^7.0.3",
     "dequal": "^2.0.2",
     "esm": "^3.2.25",

@@ -1,6 +1,7 @@
 lockfileVersion: 5.3
 
 specifiers:
+  '@core_chlbri/core': ^0.1.1-dc
   '@types/concat-stream': ^1.6.1
   '@types/cross-spawn': ^6.0.2
   '@types/esm': ^3.2.0
@@ -13,7 +14,6 @@ specifiers:
   arg: ^5.0.1
   concat-stream: ^2.0.0
   core: github:chlbri/core#v0.0.22
-  core-test: github:chlbri/core-test
   cross-spawn: ^7.0.3
   dayjs: ^1.10.7
   dequal: ^2.0.2
@@ -31,12 +31,14 @@ specifiers:
   nanoid: ^3.1.30
   object.omit: ^3.0.0
   prettier: ^2.4.1
+  rimraf: ^3.0.2
   shelljs: ^0.8.4
   ts-jest: ^27.0.7
   typescript: ^4.5.2
   zod: ^3.11.6
 
 dependencies:
+  '@core_chlbri/core': 0.1.1-dc
   arg: 5.0.1
   concat-stream: 2.0.0
   core: github.com/chlbri/core/d29d5f8af857fbdccf11f5132e0ffbe81565caf0
@@ -60,7 +62,6 @@ devDependencies:
   '@types/shelljs': 0.8.9
   '@typescript-eslint/eslint-plugin': 5.4.0_5c8ff4cecd5a55e744866c0654edac32
   '@typescript-eslint/parser': 5.4.0_eslint@8.3.0+typescript@4.5.2
-  core-test: github.com/chlbri/core-test/ead93e3216de19508b915565c161a3c78069262c_a20475fb6ed06507eeea1b0930453fa6
   dayjs: 1.10.7
   edit-json-file: 1.6.2
   eslint: 8.3.0
@@ -71,6 +72,7 @@ devDependencies:
   jest-extended: 1.1.0
   object.omit: 3.0.0
   prettier: 2.4.1
+  rimraf: 3.0.2
   ts-jest: 27.0.7_7e2a439bb7b53c38ff0c1a3c5e04c2c5
   typescript: 4.5.2
 
@@ -422,6 +424,14 @@ packages:
       exec-sh: 0.3.6
       minimist: 1.2.5
     dev: true
+
+  /@core_chlbri/core/0.1.1-dc:
+    resolution: {integrity: sha512-jW6WYspSmvtAyUD3ZhISO9/AvaGuOc7nO0jC3kY/u0k+cHwrlE+9A7gdZH0at2WLxif704mYoLYZw4xkIu7msQ==}
+    engines: {node: '>=12'}
+    dependencies:
+      dequal: 2.0.2
+      nanoid: 3.1.30
+    dev: false
 
   /@eslint/eslintrc/1.0.4:
     resolution: {integrity: sha512-h8Vx6MdxwWI2WM8/zREHMoqdgLNXEL4QX3MWSVMdyNJGvXVOs+6lp+m2hc3FnuMHDc4poxFNI20vCk0OmI4G0Q==}
@@ -5780,27 +5790,6 @@ packages:
   /zod/3.11.6:
     resolution: {integrity: sha512-daZ80A81I3/9lIydI44motWe6n59kRBfNzTuS2bfzVh1nAXi667TOTWWtatxyG+fwgNUiagSj/CWZwRRbevJIg==}
     dev: false
-
-  github.com/chlbri/core-test/ead93e3216de19508b915565c161a3c78069262c_a20475fb6ed06507eeea1b0930453fa6:
-    resolution: {tarball: https://codeload.github.com/chlbri/core-test/tar.gz/ead93e3216de19508b915565c161a3c78069262c}
-    id: github.com/chlbri/core-test/ead93e3216de19508b915565c161a3c78069262c
-    name: gitpod-typescript
-    version: 0.0.16
-    peerDependencies:
-      core: github:chlbri/core#v0.0.22
-      dequal: ^2.0.2
-      mock-stdin: ^1.0.0
-      nanoid: ^3.1.30
-      object.omit: ^3.0.0
-      zod: ^3.11.6
-    dependencies:
-      core: github.com/chlbri/core/d29d5f8af857fbdccf11f5132e0ffbe81565caf0
-      dequal: 2.0.2
-      mock-stdin: 1.0.0
-      nanoid: 3.1.30
-      object.omit: 3.0.0
-      zod: 3.11.6
-    dev: true
 
   github.com/chlbri/core/d29d5f8af857fbdccf11f5132e0ffbe81565caf0:
     resolution: {tarball: https://codeload.github.com/chlbri/core/tar.gz/d29d5f8af857fbdccf11f5132e0ffbe81565caf0}

@@ -1,4 +1,4 @@
-import { TuplifyUnion } from 'core';
+import { TuplifyUnion } from '@core_chlbri/core';
 import { ZodLiteral, ZodUnion } from 'zod';
 import { GetTypeOfUnion } from '../types';
 

@@ -1,4 +1,4 @@
-import { NOmit } from 'core';
+import { NOmit } from '@core_chlbri/core';
 import type { TypeOf, ZodLiteral } from 'zod';
 import { commitTypeSchema, COMMIT_TYPES } from './schemas/string';
 
