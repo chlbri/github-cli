@@ -13,7 +13,6 @@ specifiers:
   '@typescript-eslint/parser': ^5.4.0
   arg: ^5.0.1
   concat-stream: ^2.0.0
-  core: github:chlbri/core#v0.0.22
   cross-spawn: ^7.0.3
   dayjs: ^1.10.7
   dequal: ^2.0.2
@@ -41,7 +40,6 @@ dependencies:
   '@core_chlbri/core': 0.1.1-dc
   arg: 5.0.1
   concat-stream: 2.0.0
-  core: github.com/chlbri/core/d29d5f8af857fbdccf11f5132e0ffbe81565caf0
   cross-spawn: 7.0.3
   dequal: 2.0.2
   esm: 3.2.25
@@ -5789,11 +5787,4 @@ packages:
 
   /zod/3.11.6:
     resolution: {integrity: sha512-daZ80A81I3/9lIydI44motWe6n59kRBfNzTuS2bfzVh1nAXi667TOTWWtatxyG+fwgNUiagSj/CWZwRRbevJIg==}
-    dev: false
-
-  github.com/chlbri/core/d29d5f8af857fbdccf11f5132e0ffbe81565caf0:
-    resolution: {tarball: https://codeload.github.com/chlbri/core/tar.gz/d29d5f8af857fbdccf11f5132e0ffbe81565caf0}
-    name: '@core/core'
-    version: 0.0.22
-    engines: {node: '>=12'}
     dev: false
